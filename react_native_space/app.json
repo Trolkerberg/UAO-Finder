@@ -1,0 +1,67 @@
+{
+  "expo": {
+    "name": "Uao Finder",
+    "slug": "abacusai-mobile-apps",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.abacusai.uaofinder.t1779561346",
+      "buildNumber": "1"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.abacusai.uaofinder.t1779561346",
+      "versionCode": 1,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "abacusai1779561346",
+              "host": "*"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Se requiere acceso a la cámara para detectar ubicaciones del campus."
+        }
+      ]
+    ],
+    "scheme": "abacusai1779561346",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "a52132e3-7b24-4c1b-9315-46625e580b8a"
+      }
+    },
+    "owner": "abacus.ai"
+  }
+}
