@@ -1,16 +1,12 @@
-import { IVisionDetector } from './types';
-import { MockDetector } from './MockDetector';
+import { MockClassifier } from './MockClassifier';
+import { ResnetClassifierReal } from './ResNetClassifier';
 
-/**
- * Factory function to create a vision detector.
- * Currently returns MockDetector. Swap with RealDetector when TFLite model is ready.
- *
- * Usage:
- *   const detector = createVisionDetector();
- *   const result = await detector.detect(cameraFrame);
- */
-export function createVisionDetector(): IVisionDetector {
-  // TODO: Replace with RealDetector when TFLite model is integrated
-  // return new RealDetector(modelPath);
-  return new MockDetector();
+const USE_REAL_MODEL = false; // 🔥 cambia esto
+
+export function createClassifier() {
+  if (USE_REAL_MODEL) {
+    return new ResnetClassifierReal();
+  }
+
+  return new MockClassifier();
 }
