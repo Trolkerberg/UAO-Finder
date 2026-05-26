@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Uao Finder",
+    "name": "UAO Finder",
     "slug": "abacusai-mobile-apps",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.abacusai.uaofinder.t1779561346",
-      "buildNumber": "1"
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -59,9 +62,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "a52132e3-7b24-4c1b-9315-46625e580b8a"
+        "projectId": "4af18a4c-de71-403b-9a6f-ec87cad0b812"
       }
     },
-    "owner": "abacus.ai"
+    "owner": "flama356"
   }
 }

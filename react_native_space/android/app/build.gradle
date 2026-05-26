@@ -126,6 +126,8 @@ android {
         }
     }
     packagingOptions {
+        pickFirst '**/*.so'
+        pickFirst '**/*.jar'
         jniLibs {
             def enableLegacyPackaging = findProperty('expo.useLegacyPackaging') ?: 'false'
             useLegacyPackaging enableLegacyPackaging.toBoolean()
@@ -159,8 +161,8 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-    implementation 'org.pytorch:pytorch_android:1.13.1'
-    implementation 'org.pytorch:pytorch_android_torchvision:1.13.1'
+    implementation 'org.pytorch:pytorch_android_lite:1.13.1'
+    implementation 'org.pytorch:pytorch_android_torchvision_lite:1.13.1'
 
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
