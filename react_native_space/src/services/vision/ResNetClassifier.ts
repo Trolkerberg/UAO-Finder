@@ -6,7 +6,7 @@ const CLASS_NAMES = [
   "Aulas 2",
   "Sótano 1",
   "Sótano 2",
-  "Cafetería"
+  "Aulas_3"
 ];
 
 export class ResnetClassifierReal {

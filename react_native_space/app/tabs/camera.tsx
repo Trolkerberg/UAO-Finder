@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   Text,
   Pressable,
   StyleSheet,
-  Platform,
+  //Platform,
   ActivityIndicator,
-  Linking,
+  //Linking,
 } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,13 +20,16 @@ import { ResnetClassifierReal } from '../../src/services/vision/ResNetClassifier
 import { getLandmarkByName } from '../../src/data/landmarks';
 import { useNavigation } from '../../src/context/NavigationContext';
 
+
 // ✅ instancias separadas
 const mockClassifier = new MockClassifier();
 const realClassifier = new ResnetClassifierReal();
-const cameraRef = useRef<any>(null);
+//const cameraRef = useRef<any>(null);
 
 export default function CameraScreen() {
-  const [permission, requestPermission] = useCameraPermissions();
+  //const [permission, requestPermission] = useCameraPermissions();
+  const cameraRef = useRef<any>(null);
+  const [permission] = useCameraPermissions();
   const [classification, setClassification] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);

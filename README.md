@@ -117,9 +117,9 @@ El modelo de detección fue entrenado con un dataset personalizado:
   - 🏛️ Arco (entrada principal)
   - 🏫 Aulas 1 (primer bloque académico)
   - 🏫 Aulas 2 (segundo bloque académico)
+  - 🏫 Aulas 3 (tercer bloque académico)
   - 🔽 Sótano 1 (nivel subterráneo 1)
   - 🔽 Sótano 2 (nivel subterráneo 2)
-  - ☕ Cafetería (zona de alimentación)
 - **Formato**: PASCAL VOC / COCO
 - **Disponibilidad**: [Kaggle](https://kaggle.com) / [Google Drive](https://drive.google.com)
 

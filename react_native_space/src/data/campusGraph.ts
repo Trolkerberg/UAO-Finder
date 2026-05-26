@@ -62,9 +62,9 @@ const edges: GraphEdge[] = [
   },
   {
     from: 'Aulas 2',
-    to: 'Cafetería',
+    to: 'Aulas_3',
     distance: 110,
-    direction: 'Continúa hacia el sur por 110m hasta la Cafetería',
+    direction: 'Continúa hacia el sur por 110m hasta Aulas 3',
     reverseDirection: 'Camina hacia el norte por 110m hasta Aulas 2',
   },
   {
@@ -76,9 +76,9 @@ const edges: GraphEdge[] = [
   },
   {
     from: 'Biblioteca',
-    to: 'Cafetería',
+    to: 'Aulas 3',
     distance: 130,
-    direction: 'Camina hacia el este por 130m hasta la Cafetería',
+    direction: 'Camina hacia el este por 130m hasta Aulas 3',
     reverseDirection: 'Camina hacia el oeste por 130m hasta la Biblioteca',
   },
   {
@@ -90,9 +90,9 @@ const edges: GraphEdge[] = [
   },
   {
     from: 'Lago',
-    to: 'Cafetería',
+    to: 'Aulas 3',
     distance: 100,
-    direction: 'Camina bordeando el lago hacia el sur por 100m hasta la Cafetería',
+    direction: 'Camina bordeando el lago hacia el sur por 100m hasta Aulas 3',
     reverseDirection: 'Camina bordeando el lago hacia el norte por 100m hasta el Lago',
   },
 ];

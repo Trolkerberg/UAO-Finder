@@ -62,9 +62,9 @@ Se capturaron más de **1,236 imágenes** del campus de la UAO distribuidas en 6
 | Arco | Entrada principal del campus | ~206 |
 | Aulas 1 | Primer bloque de aulas | ~206 |
 | Aulas 2 | Segundo bloque de aulas | ~206 |
+| Aulas 3 | Tercer bloque de aulas | ~206 |
 | Sótano 1 | Primer nivel subterráneo | ~206 |
 | Sótano 2 | Segundo nivel subterráneo | ~206 |
-| Cafetería | Zona de alimentación | ~206 |
 
 Las imágenes fueron anotadas en formato PASCAL VOC con bounding boxes para cada punto de referencia.
 

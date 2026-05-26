@@ -1,14 +1,19 @@
-
 package com.tuapp.torch
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.promise
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactContextBaseJavaModule
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableMap
 import org.pytorch.IValue
 import org.pytorch.Module
-import org.pytorch.Tensor
 import org.pytorch.torchvision.TensorImageUtils
+import java.io.File
+import java.io.FileOutputStream
 
 class TorchModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
@@ -22,9 +27,10 @@ class TorchModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaM
     fun predict(imageData: ReadableMap, promise: Promise) {
         try {
             val base64 = imageData.getString("base64")
+            ?: throw IllegalArgumentException("Campo base64 faltante")
             val bytes = Base64.decode(base64, Base64.DEFAULT)
             val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-
+                ?: throw IllegalArgumentException("No se pudo decodificar la imagen")
             val resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
 
             val input = TensorImageUtils.bitmapToFloat32Tensor(
@@ -34,7 +40,9 @@ class TorchModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaM
             )
 
             if (module == null) {
-                module = Module.load("model.pt")
+                //module = Module.load("model.pt")
+                val modelPath = assetFilePath(ReactApplicationContext, "model.pt")
+                module = Module.load(modelPath)
             }
 
             val output = module!!.forward(IValue.from(input)).toTensor()
@@ -55,9 +63,28 @@ class TorchModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaM
             result.putDouble("confidence", maxScore.toDouble())
 
             promise.resolve(result)
-
         } catch (e: Exception) {
             promise.reject("ERROR", e)
         }
+    }
+
+    private fun assetFilePath(context, ReactApplicationContext, assetName: String): String{
+        vale file = File(context.filesDir, assetName)
+
+        if(file.exists() && file.lenght()>0){
+            return file.absolutePath
+        }
+
+        context.assets.open(assetName).use { inputStream ->
+            FileOutputStream(file).use { outpuStream ->
+                val buffer = ByteArray(4 * 1024)
+                val read: Int
+                while (inputStream.read(buffer).also {read = it} != -1){
+                    outpuStream.write(buffer, 0, read)
+                }
+                outpuStream.flush()
+            }
+        }
+        return file.absolutePath
     }
 }

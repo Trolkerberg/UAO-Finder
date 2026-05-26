@@ -49,7 +49,7 @@ export default function InfoScreen() {
           El sistema utiliza un modelo Faster R-CNN con backbone ResNet-50/MobileNetV2 para la
           detecci\u00f3n y clasificaci\u00f3n de 6 puntos de referencia del campus. El dataset de
           entrenamiento contiene m\u00e1s de 1,236 im\u00e1genes distribuidas en 6 clases: Arco, Aulas 1,
-          Aulas 2, S\u00f3tano 1, S\u00f3tano 2 y Cafeter\u00eda.{' '}
+          Aulas 2, S\u00f3tano 1, S\u00f3tano 2 y Aulas_3.{' '}
           Actualmente, la detecci\u00f3n se simula con un m\u00f3dulo mock que puede ser reemplazado por el
           modelo real de TensorFlow Lite.
         </Text>
