@@ -2,7 +2,7 @@
 
 ### Sistema de Navegación Inteligente para el Campus Universitario
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Build Status](https://img.shields.io/badge/APK%20build-bloqueado%20por%20PyTorch-red)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey)
 ![Expo](https://img.shields.io/badge/Expo-SDK%2054-black)
@@ -14,7 +14,7 @@
 
 ## ✨ Características
 
-- 📷 **Detección de Puntos de Referencia** — Sistema de visión por computadora basado en Faster R-CNN para identificar ubicaciones del campus en tiempo real
+- 📷 **Detección de Puntos de Referencia** — Sistema de visión por computadora basado en ResNet18 entrenado con imágenes del campus de la UAO para identificar ubicaciones en tiempo real
 - 🗺️ **Mapa Interactivo SVG** — Mapa 2D del campus con zoom, paneo y visualización de rutas
 - 🧭 **Navegación por Ruta Más Corta** — Algoritmo de Dijkstra implementado en TypeScript puro para calcular la ruta óptima entre ubicaciones
 - 📍 **Instrucciones Paso a Paso** — Direcciones detalladas en español con distancias y tiempos estimados
@@ -53,6 +53,12 @@ npx expo start
 ```
 
 Escanea el código QR con **Expo Go** (Android) o la app de Cámara (iOS) para probar en tu dispositivo.
+
+## ⚠️ Estado de la Versión Actual
+
+La versión presente corresponde a la **última versión disponible en GitHub**. En este estado, el proyecto **no permite construir el APK final** debido a errores relacionados con la integración de **PyTorch** en el entorno móvil.
+
+El **APK incluido en la carpeta del proyecto** representa una **versión de prueba**. Esta versión no usa modelos de inteligencia artificial reales, sino que **simula la interacción de reconocimiento y navegación** para validar el flujo de uso de la aplicación.
 
 ## 📂 Estructura del Proyecto
 
@@ -105,12 +111,12 @@ react_native_space/
 | **TypeScript** | Tipado estático para código robusto |
 | **Expo Router** | Navegación basada en archivos |
 | **react-native-svg** | Renderizado del mapa SVG interactivo |
-| **Faster R-CNN** | Detección de objetos (simulado, backbone ResNet-50/MobileNetV2) |
+| **ResNet18** | Modelo entrenado con imágenes del campus de la UAO para reconocimiento de puntos de referencia |
 | **Dijkstra** | Algoritmo de ruta más corta en grafo ponderado |
 
 ## 📊 Dataset
 
-El modelo de detección fue entrenado con un dataset personalizado:
+El modelo de reconocimiento basado en **ResNet18** fue entrenado con un dataset personalizado:
 
 - **1,236+ imágenes** capturadas en el campus de la UAO
 - **6 clases** de puntos de referencia:
@@ -125,16 +131,16 @@ El modelo de detección fue entrenado con un dataset personalizado:
 
 ## 📐 Metodología
 
-### Detección de Puntos de Referencia
+### Reconocimiento de Puntos de Referencia
 
-Se emplea un modelo **Faster R-CNN** con backbone intercambiable (ResNet-50 para mayor precisión, MobileNetV2 para inferencia en dispositivo):
+Se emplea un modelo **ResNet18** entrenado con imágenes capturadas en el campus de la UAO para reconocer puntos de referencia y apoyar la ubicación inicial del usuario dentro de la aplicación.
 
-1. **Preprocesamiento**: Redimensionamiento a 640×640, normalización
-2. **Region Proposal Network (RPN)**: Generación de propuestas de regiones
-3. **ROI Pooling**: Extracción de características por región
-4. **Clasificación + Regresión de Bounding Box**: Predicción de clase y coordenadas
+1. **Preprocesamiento**: ajuste del tamaño de imagen, normalización y preparación del frame capturado por la cámara.
+2. **Extracción de características**: uso de la arquitectura ResNet18 para obtener patrones visuales representativos de cada punto del campus.
+3. **Clasificación**: predicción del punto de referencia más probable según las clases entrenadas.
+4. **Integración con navegación**: el resultado del reconocimiento se usa como punto de partida para calcular rutas dentro del mapa.
 
-Actualmente se utiliza un **módulo mock** (`MockDetector`) que simula detecciones aleatorias. La interfaz `IVisionDetector` permite intercambiar fácilmente por un modelo real de TensorFlow Lite.
+En la versión de prueba incluida como APK, la interacción se simula y no se ejecuta un modelo real en el dispositivo.
 
 ### Navegación por Ruta Más Corta
 
@@ -170,7 +176,10 @@ Este proyecto está licenciado bajo la **Licencia MIT** — ver el archivo [LICE
 
 ## 👥 Autores y Créditos
 
-- **[Trolkerberg](https://github.com/Trolkerberg)** — Desarrollador principal
+- **Juan Camilo Salgado Baldion**
+- **Jose Andres Criollo Echeverri**
+- **Juan Felipe Fernandez Losada**
+- **Juan Diego Parra Patiño**
 - **Universidad Autónoma de Occidente** — Institución académica, Cali, Colombia
 
 ---
